@@ -1,0 +1,11 @@
+library(rvest)
+library(dplyr)
+link='https://www.coursesuggest.com/top-50-engineering-colleges-in-tamilnadu-2018-2019/'
+web=read_html(link)
+collegename=web%>%html_nodes(".listing-row-title a")%>%html_text()
+View(collegename)
+location=web%>%html_node("dd a")%>%html_text()
+View(location)
+collegs=data.frame(collegename,location)
+View(collegs)
+write.csv(collegs,'top 50 colleges.csv')
